@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><b>Happy Birthday, Deepika!</b></title>
+    <style>
+        body {
+            background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 50px;
+            color: #ddff00;
+        }
+        h1 {
+            font-size: 3em;
+            color: #ff4081;
+        }
+        h2 {
+            font-size: 2em;
+            margin-top: 0;
+        }
+        p {
+            font-size: 1.5em;
+        }
+        #age {
+            color: #ff4081;
+            font-weight: bold;
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Happy Birthday, Deepika! 🎉🎂</h1>
+    <h2>My beloved friend</h2>
+    <img src="happy_birthday_1.jpeg" alt="Birthday Image" width="300" style="border-radius: 20px; box-shadow: 0 0 15px #ff4081;">
+     <img src="happy_birthday_2.jpeg" alt="Birthday Image" width="300" style="border-radius: 20px; box-shadow: 0 0 15px #ff4081;">
+
+    <p><b>With love</b>,<br>Sayan</p>
+
+    <!-- Music with autoplay -->
+   
+<audio id="birthdayAudio" autoplay preload="auto">
+    <source src="happy-birthday-357371.mp3" type="audio/mp3">
+</audio>
+
+<script>
+    window.addEventListener('load', function() {
+        const audio = document.getElementById('birthdayAudio');
+        audio.volume = 1.0;
+        audio.play().then(() => {
+            console.log('Audio is playing automatically!');
+        }).catch(err => {
+            console.warn('Autoplay blocked by browser:', err);
+        });
+    });
+
+    // Fallback: allow user to manually start audio if blocked
+    document.body.addEventListener('click', function() {
+        const audio = document.getElementById('birthdayAudio');
+        audio.play();
+    }, {once: true});
+</script>
+
+<script>
+    document.body.addEventListener('click', function() {
+        const audio = document.getElementById('birthdayAudio');
+        audio.play();
+    }, {once: true});
+</script>
+
+
+    <!-- Fireworks Canvas -->
+    <canvas id="fireworks"></canvas>
+
+    
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Age Counter</title>
+</head>
+<body>
+
+    <p><b>You are</b> <span id="age"></span><b> old!</b></p>
+
+    <script>
+        // 🎂 Set your birthdate here:
+        const birthDate = new Date('2009-06-16T00:00:00'); // YYYY-MM-DD format
+
+        function updateAge() {
+            const now = new Date();
+            let diff = now - birthDate;
+
+            const msInSec = 1000;
+            const msInMin = msInSec * 60;
+            const msInHour = msInMin * 60;
+            const msInDay = msInHour * 24;
+            const msInYear = msInDay * 365.25; // Considering leap years
+
+            const years = Math.floor(diff / msInYear);
+            diff -= years * msInYear;
+
+            const days = Math.floor(diff / msInDay);
+            diff -= days * msInDay;
+
+            const hours = Math.floor(diff / msInHour);
+            diff -= hours * msInHour;
+
+            const minutes = Math.floor(diff / msInMin);
+            diff -= minutes * msInMin;
+
+            const seconds = Math.floor(diff / msInSec);
+
+            document.getElementById('age').textContent =
+                `${years} years, ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+        }
+
+        setInterval(updateAge, 1000);
+        updateAge();
+    </script>
+</body>
+</html>
+
+       <script>
+        // Simple fireworks animation
+        const canvas = document.getElementById('fireworks');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        class Firework {
+            constructor() {
+                this.x = random(0, canvas.width);
+                this.y = canvas.height;
+                this.size = random(2, 5);
+                this.speedY = random(2, 7);
+                this.color = `hsl(${random(0, 360)}, 100%, 50%)`;
+            }
+            update() {
+                this.y -= this.speedY;
+                if (this.y < random(50, 300)) this.reset();
+            }
+            reset() {
+                this.x = random(0, canvas.width);
+                this.y = canvas.height;
+                this.color = `hsl(${random(0, 360)}, 100%, 50%)`;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        const fireworks = [];
+        for (let i = 0; i < 100; i++) {
+            fireworks.push(new Firework());
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            fireworks.forEach(firework => {
+                firework.update();
+                firework.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+
+    
+
+</body>
+</html>
